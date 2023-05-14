@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import HTMLReactParser from "html-react-parser";
-import { useParams } from "react-router-dom";
-import millify from "millify";
-import { Col, Row, Typography, Select } from "antd";
 import {
-  MoneyCollectOutlined,
-  DollarCircleOutlined,
-  FundOutlined,
-  ExclamationCircleOutlined,
-  StopOutlined,
-  TrophyOutlined,
   CheckOutlined,
+  DollarCircleOutlined,
+  ExclamationCircleOutlined,
+  FundOutlined,
+  MoneyCollectOutlined,
   NumberOutlined,
+  StopOutlined,
   ThunderboltOutlined,
+  TrophyOutlined,
 } from "@ant-design/icons";
+import { Col, Row, Select, Typography } from "antd";
+import HTMLReactParser from "html-react-parser";
+import millify from "millify";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
-import Loader from "./Loader";
 import LineChart from "./LineChart";
+import Loader from "./Loader";
 
 const { Title, Text } = Typography;
 const { Option } = Select;

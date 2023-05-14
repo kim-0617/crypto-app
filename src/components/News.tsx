@@ -17,7 +17,7 @@ type NewsType = {
 function News({ simplified }: NewsType) {
   const [newsCate, setnewsCate] = useState("Cryptocurrency");
 
-  const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({
+  const { data: cryptoNews } = useGetCryptoNewsQuery({
     newsCategory: newsCate,
     count: simplified ? 6 : 12,
   });
