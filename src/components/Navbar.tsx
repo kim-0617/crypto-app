@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Menu, Typography, Avatar } from "antd";
+import React, { useState, useEffect } from "react";
+import { Button, Menu, Typography, Avatar, MenuProps } from "antd";
 import {
   HomeOutlined,
   MoneyCollectOutlined,
@@ -8,9 +8,51 @@ import {
   MenuOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import icon from "../images/";
+import icon from "../images/cryptocurrency.png";
+
+const menuItems: MenuProps["items"] = [
+  {
+    label: <Link to="/">Home</Link>,
+    key: "home",
+    icon: <HomeOutlined />,
+  },
+  {
+    label: <Link to="/cryptocurrencies">Cryptocurrencies</Link>,
+    key: "cryptocurrencies",
+    icon: <FundOutlined />,
+  },
+  {
+    label: <Link to="/news">News</Link>,
+    key: "news",
+    icon: <BulbOutlined />,
+  },
+];
 
 function Navbar() {
+  const [current, setCurrent] = useState<string>("home");
+  const [activeMenu, setActiveMenu] = useState<boolean>(true);
+  const [screenSize, setScreenSize] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (screenSize < 768) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
+
+  const onMenu: MenuProps["onClick"] = (e) => {
+    setCurrent(e.key);
+  };
+
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -18,21 +60,22 @@ function Navbar() {
         <Typography.Title level={2} className="logo">
           <Link to="/">Cryptoverse</Link>
         </Typography.Title>
+        <Button
+          className="menu-control-container"
+          onClick={() => setActiveMenu((prev) => !prev)}
+        >
+          <MenuOutlined />
+        </Button>
 
-        <Menu theme="dark">
-          <Menu.Item icon={<HomeOutlined />}>
-            <Link to={"/"}>Home</Link>
-          </Menu.Item>
-          <Menu.Item icon={<FundOutlined />}>
-            <Link to={"/cryptocurrencies"}>Cryptocurrencies</Link>
-          </Menu.Item>
-          <Menu.Item icon={<MoneyCollectOutlined />}>
-            <Link to={"/exchanges"}>Exchanges</Link>
-          </Menu.Item>
-          <Menu.Item icon={<BulbOutlined />}>
-            <Link to={"/news"}>News</Link>
-          </Menu.Item>
-        </Menu>
+        {activeMenu && (
+          <Menu
+            theme="dark"
+            onClick={onMenu}
+            selectedKeys={[current]}
+            items={menuItems}
+            className="navbar-menu"
+          />
+        )}
       </div>
     </div>
   );
