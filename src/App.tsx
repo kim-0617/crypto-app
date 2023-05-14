@@ -1,7 +1,15 @@
 import React from "react";
 
 function App() {
-  return <div>App</div>;
+  return (
+    <div className="app">
+      <div className="navbar"></div>
+
+      <div className="main"></div>
+
+      <div className="footer"></div>
+    </div>
+  );
 }
 
 export default App;
