@@ -13,6 +13,11 @@
   box-sizing: border-box;
 }
 
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 a:hover {
   color: var(--pink) !important;
 }
@@ -275,10 +280,22 @@ a:hover {
   .coin-detail-container {
     margin: 0;
   }
+
+  .coin-name {
+    margin-top: 30px;
+  }
+
+  .chart-title {
+    margin-top: 20px;
+  }
 }
 @media screen and (max-width: 500px) {
   .heading {
     margin-top: 20px;
+  }
+
+  .show-more a {
+    font-size: 1em;
   }
 }
 
@@ -288,18 +305,27 @@ a:hover {
 .news-card {
   min-height: 320px !important;
   position: relative !important;
+  padding-bottom: 30px;
 }
 .news-image-container {
   display: flex !important;
   justify-content: space-between !important;
 }
 .news-title {
-  width: 70%;
+  width: 65%;
+  margin-right: 5%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .news-image-container img {
   width: 100px;
   height: 100px;
+  border-radius: 5px;
+  display: block;
 }
 .news-card p {
   color: black;
@@ -307,7 +333,7 @@ a:hover {
 }
 .provider-container {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   left: 0;
   display: flex;
   align-items: center;
