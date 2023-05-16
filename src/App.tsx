@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Navbar,
   Homepage,
@@ -10,9 +10,25 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Layout, Space, Typography } from "antd";
 
 function App() {
+  const [navBarWidth, setNavBarWidth] = useState<number>(0);
+  const navBarRef = useRef<HTMLDivElement>(null);
+
+  const handleResize = useCallback(() => {
+    if (navBarRef.current?.clientWidth)
+      setNavBarWidth(navBarRef.current?.clientWidth);
+  }, []);
+
+  useEffect(() => {
+    if (navBarRef.current?.clientWidth)
+      setNavBarWidth(navBarRef.current?.clientWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+
   return (
     <div className="app">
-      <div className="navbar">
+      <div className="navbar" ref={navBarRef}>
         <Navbar />
       </div>
 
@@ -28,7 +44,15 @@ function App() {
           </div>
         </Layout>
 
-        <div className="footer">
+        <div
+          className="footer"
+          style={{
+            width:
+              window.innerWidth > 800
+                ? `calc(100% - ${navBarWidth}px )`
+                : "100%",
+          }}
+        >
           <Typography.Title
             level={5}
             style={{ color: "#fff", textAlign: "center" }}

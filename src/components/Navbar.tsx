@@ -57,7 +57,9 @@ function Navbar() {
       <div className="logo-container">
         <Avatar src={icon} size="large" />
         <Typography.Title level={2} className="logo">
-          <Link to="/">Cryptoverse</Link>
+          <Link to="/" style={{ marginLeft: -10 }}>
+            Cryptoverse
+          </Link>
         </Typography.Title>
         <Button
           className="menu-control-container"

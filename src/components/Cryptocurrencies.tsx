@@ -29,7 +29,10 @@ function Cryptocurrencies({ simplified }: CryptocurrenciesType) {
   return (
     <>
       {!simplified && (
-        <div className="search-crypto">
+        <div
+          className="search-crypto"
+          style={{ marginTop: window.innerWidth > 800 ? 0 : 70 }}
+        >
           <Input
             placeholder="Search Cryptocurrency"
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -37,7 +40,11 @@ function Cryptocurrencies({ simplified }: CryptocurrenciesType) {
         </div>
       )}
 
-      <Row gutter={[32, 32]} className="crypto-card-container">
+      <Row
+        gutter={[32, 32]}
+        className="crypto-card-container"
+        style={{ marginBottom: 200 }}
+      >
         {cryptos?.map((currency: any) => (
           <Col
             xs={24}

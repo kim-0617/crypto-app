@@ -107,7 +107,7 @@ const CryptoDetails = () => {
   ];
 
   return (
-    <Col className="coin-detail-container">
+    <Col className="coin-detail-container" style={{ marginBottom: 150 }}>
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
           {cryptoDetails.name} Price
@@ -174,8 +174,7 @@ const CryptoDetails = () => {
       <Col className="coin-desc-link">
         <Row className="coin-desc">
           <Title level={3} className="coin-details-heading">
-            What is {cryptoDetails.name}
-            {HTMLReactParser(cryptoDetails.description)}
+            What is {HTMLReactParser(cryptoDetails.description)}
           </Title>
         </Row>
         <Col className="coin-links">

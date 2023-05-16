@@ -16,7 +16,11 @@ function Homepage() {
 
   return (
     <>
-      <Title level={2} className="heading" style={{ paddingTop: 20 }}>
+      <Title
+        level={2}
+        className="heading"
+        style={{ paddingTop: window.innerWidth > 800 ? 0 : 50 }}
+      >
         Global Crypto Stats
       </Title>
       <Row>

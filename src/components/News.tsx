@@ -26,9 +26,9 @@ function News({ simplified }: NewsType) {
   if (!cryptoNews?.value) return <Loader />;
 
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} style={{ marginBottom: 200 }}>
       {!simplified && (
-        <Col span={24}>
+        <Col span={24} style={{ marginTop: window.innerWidth > 800 ? 0 : 70 }}>
           <Select
             showSearch
             className="select-news"
